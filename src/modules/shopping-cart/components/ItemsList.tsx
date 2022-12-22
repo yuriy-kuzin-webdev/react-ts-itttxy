@@ -12,7 +12,7 @@ type ItemsListProps = {
   items: ShoppingCartItem[];
 };
 
-const ItemsList: React.FC<ItemsListProps> = ({ items }) => {
+const ItemsList: React.FC<ItemsListProps> = ({ items, handleIncreaseQuantity }) => {
   return (
     <ItemsListWrapper>
       {items.map((item) => {
@@ -30,7 +30,7 @@ const ItemsList: React.FC<ItemsListProps> = ({ items }) => {
               }`}</Typography>
             </Grid>
             <ButtonGroup variant="outlined" aria-label="outlined button group">
-              <Button>+</Button>
+              <Button onClick={() => handleIncreaseQuantity(item)} >+</Button>
               <Button>-</Button>
               <Button>x</Button>
             </ButtonGroup>

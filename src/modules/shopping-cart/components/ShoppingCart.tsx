@@ -35,7 +35,12 @@ const ShoppingCart = () => {
     setItems((prev) => newItems);
   };
 
-  const handleIncreaseQuantity = (item) => {};
+  const handleIncreaseQuantity = (item) => {
+    const newItems = structuredClone(items);
+    newItems.find((listedItem) => listedItem.productId === item.productId)
+      .quantity++;
+    setItems((prev) => newItems);
+  };
 
   const handleDecreaseQuantity = (item) => {};
 
@@ -49,7 +54,10 @@ const ShoppingCart = () => {
       <AddItemForm handleAddToCart={handleAddToCart}/>
       {!!items.length && (
         <React.Fragment>
-          <ItemsList items={items} />
+          <ItemsList 
+            items={items} 
+            handleIncreaseQuantity={handleIncreaseQuantity}
+          />
           <Total items={items} handleClearCart={handleClearCart} />
         </React.Fragment>
       )}
