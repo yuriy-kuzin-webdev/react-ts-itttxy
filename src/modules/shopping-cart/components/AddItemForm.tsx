@@ -22,14 +22,22 @@ const QuantityInputWrapper = styled(FormControl)(() => ({
 
 type AddItemFormProps = {};
 
-const AddItemForm: React.FC<AddItemFormProps> = () => {
+const AddItemForm: React.FC<AddItemFormProps> = ({ handleAddToCart }) => {
   const [productId, setProductId] = React.useState<string>('');
   const [quantity, setQuantity] = React.useState<number>(0);
+
+  const handleAddClick = () => handleAddToCart(productId, quantity)
+  const handleProductChange = (event) => setProductId(event.target.value);
+  const handleQuantityChange = (event) => setQuantity(+event.target.value);
 
   return (
     <AddItemBox>
       <ItemSelectWrapper>
-        <TextField select value={productId} label="Item">
+        <TextField 
+          select value={productId} 
+          label="Item"
+          onChange={handleProductChange}
+        >
           {ALL_PRODUCTS.map((product) => (
             <MenuItem key={product.id} value={product.id}>
               {product.label}
@@ -38,9 +46,18 @@ const AddItemForm: React.FC<AddItemFormProps> = () => {
         </TextField>
       </ItemSelectWrapper>
       <QuantityInputWrapper>
-        <TextField label="Quantity" type="number" value={quantity} />
+        <TextField 
+          label="Quantity" 
+          type="number" 
+          value={quantity}
+          onChange={handleQuantityChange}
+        />
       </QuantityInputWrapper>
-      <Button variant="contained" disabled={!quantity || !productId}>
+      <Button
+        variant="contained" 
+        disabled={!quantity || !productId}
+        onClick={handleAddClick}
+       >
         Add
       </Button>
     </AddItemBox>

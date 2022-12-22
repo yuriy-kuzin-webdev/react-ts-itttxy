@@ -12,7 +12,7 @@ type ItemsListProps = {
   items: ShoppingCartItem[];
 };
 
-const ItemsList: React.FC<ItemsListProps> = ({ items }) => {
+const ItemsList: React.FC<ItemsListProps> = ({ items, handleIncreaseQuantity, handleDecreaseQuantity, handleRemoveFromCart }) => {
   return (
     <ItemsListWrapper>
       {items.map((item) => {
@@ -30,9 +30,9 @@ const ItemsList: React.FC<ItemsListProps> = ({ items }) => {
               }`}</Typography>
             </Grid>
             <ButtonGroup variant="outlined" aria-label="outlined button group">
-              <Button>+</Button>
-              <Button>-</Button>
-              <Button>x</Button>
+              <Button onClick={() => handleIncreaseQuantity(item)} >+</Button>
+              <Button onClick={() => handleDecreaseQuantity(item)}>-</Button>
+              <Button onClick={() => handleRemoveFromCart(item)}>x</Button>
             </ButtonGroup>
           </Grid>
         );
