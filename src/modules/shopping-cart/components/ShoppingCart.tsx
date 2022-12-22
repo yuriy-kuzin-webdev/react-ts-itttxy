@@ -35,6 +35,14 @@ const ShoppingCart = () => {
     setItems((prev) => newItems);
   };
 
+  const handleIncreaseQuantity = (item) => {};
+
+  const handleDecreaseQuantity = (item) => {};
+
+  const handleRemoveFromCart = (item) => {};
+  
+  const handleClearCart = () => setItems((prev) => []);
+
   return (
     <ShoppingCardWrapper>
       <ShoppingCartHeader>Shopping Cart</ShoppingCartHeader>
