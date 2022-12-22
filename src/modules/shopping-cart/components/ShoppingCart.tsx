@@ -42,7 +42,17 @@ const ShoppingCart = () => {
     setItems((prev) => newItems);
   };
 
-  const handleDecreaseQuantity = (item) => {};
+  const handleDecreaseQuantity = (item) => {
+    const newItems = structuredClone(items);
+    const searchItem = newItems.find(
+      (listedItem) => listedItem.productId === item.productId
+    );
+    if (--searchItem.quantity > 0) {
+      setItems((prev) => newItems);
+    } else {
+      handleRemoveFromCart(item);
+    }
+  };
 
   const handleRemoveFromCart = (item) => {
     const newItems = items.filter(
@@ -62,6 +72,7 @@ const ShoppingCart = () => {
           <ItemsList 
             items={items} 
             handleIncreaseQuantity={handleIncreaseQuantity}
+            handleDecreaseQuantity={handleDecreaseQuantity}
             handleRemoveFromCart={handleRemoveFromCart}
           />
           <Total items={items} handleClearCart={handleClearCart} />
