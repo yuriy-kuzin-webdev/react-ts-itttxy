@@ -24,10 +24,21 @@ const ShoppingCartHeader = styled(Typography)(() => ({
 const ShoppingCart = () => {
   const [items, setItems] = React.useState<ShoppingCartItem[]>([]);
 
+  const handleAddToCart = (productId, quantity) => {
+    const newItems = structuredClone(items);
+    const existed = newItems.find((item) => item.productId === productId);
+    if (existed) {
+      existed.quantity += quantity;
+    } else {
+      newItems.push({ productId, quantity });
+    }
+    setItems((prev) => newItems);
+  };
+
   return (
     <ShoppingCardWrapper>
       <ShoppingCartHeader>Shopping Cart</ShoppingCartHeader>
-      <AddItemForm />
+      <AddItemForm handleAddToCart={handleAddToCart}/>
       {!!items.length && (
         <React.Fragment>
           <ItemsList items={items} />
