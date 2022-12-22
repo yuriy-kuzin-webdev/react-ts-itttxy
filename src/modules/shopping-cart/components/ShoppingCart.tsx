@@ -44,7 +44,12 @@ const ShoppingCart = () => {
 
   const handleDecreaseQuantity = (item) => {};
 
-  const handleRemoveFromCart = (item) => {};
+  const handleRemoveFromCart = (item) => {
+    const newItems = items.filter(
+      (listedItem) => listedItem.productId !== item.productId
+    );
+    setItems((prev) => newItems);
+  };
 
   const handleClearCart = () => setItems((prev) => []);
 
@@ -57,6 +62,7 @@ const ShoppingCart = () => {
           <ItemsList 
             items={items} 
             handleIncreaseQuantity={handleIncreaseQuantity}
+            handleRemoveFromCart={handleRemoveFromCart}
           />
           <Total items={items} handleClearCart={handleClearCart} />
         </React.Fragment>
