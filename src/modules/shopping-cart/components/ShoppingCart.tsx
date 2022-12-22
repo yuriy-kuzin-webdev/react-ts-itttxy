@@ -25,6 +25,10 @@ const ShoppingCart = () => {
   const [items, setItems] = React.useState<ShoppingCartItem[]>([]);
 
   const handleAddToCart = (productId, quantity) => {
+    if (quantity <= 0) {
+      return;
+    }
+    
     const newItems = structuredClone(items);
     const existed = newItems.find((item) => item.productId === productId);
     if (existed) {
