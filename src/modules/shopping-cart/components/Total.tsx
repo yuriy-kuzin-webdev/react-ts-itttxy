@@ -12,7 +12,7 @@ type TotalProps = {
   items: ShoppingCartItem[];
 };
 
-const Total: React.FC<TotalProps> = ({ items }) => {
+const Total: React.FC<TotalProps> = ({ items, handleClearCart }) => {
   const totalValue = items.reduce((acc, item) => {
     const price = PRODUCTS_MAP[item.productId]?.price || 0;
     acc += item.quantity * price;
@@ -27,7 +27,7 @@ const Total: React.FC<TotalProps> = ({ items }) => {
           <Typography>{`Total: $${totalValue}`}</Typography>
         </Grid>
         <Grid item xs={6}>
-          <Button variant="outlined">Clear</Button>
+          <Button variant="outlined" onClick={handleClearCart}>Clear</Button>
         </Grid>
       </Grid>
     </TotalWrapper>

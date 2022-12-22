@@ -40,7 +40,7 @@ const ShoppingCart = () => {
   const handleDecreaseQuantity = (item) => {};
 
   const handleRemoveFromCart = (item) => {};
-  
+
   const handleClearCart = () => setItems((prev) => []);
 
   return (
@@ -50,7 +50,7 @@ const ShoppingCart = () => {
       {!!items.length && (
         <React.Fragment>
           <ItemsList items={items} />
-          <Total items={items} />
+          <Total items={items} handleClearCart={handleClearCart} />
         </React.Fragment>
       )}
     </ShoppingCardWrapper>
